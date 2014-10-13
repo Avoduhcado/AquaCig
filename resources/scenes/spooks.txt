@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="Spooky" tilewidth="32" tileheight="32">
+  <image source="../textures/Spooky Tileset.png" width="496" height="160"/>
+  <tile id="3">
+   <properties>
+    <property name="Slope" value="1"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="Slope" value="2"/>
+   </properties>
+  </tile>
+  <tile id="18">
+   <properties>
+    <property name="Slope" value="0"/>
+   </properties>
+  </tile>
+  <tile id="37">
+   <properties>
+    <property name="Slope" value="1"/>
+   </properties>
+  </tile>
+  <tile id="38">
+   <properties>
+    <property name="Slope" value="2"/>
+   </properties>
+  </tile>
+  <tile id="40">
+   <properties>
+    <property name="Slope" value="3"/>
+   </properties>
+  </tile>
+  <tile id="41">
+   <properties>
+    <property name="Slope" value="4"/>
+   </properties>
+  </tile>
+  <tile id="50">
+   <properties>
+    <property name="Slope" value="0"/>
+   </properties>
+  </tile>
+  <tile id="57">
+   <properties>
+    <property name="Slope" value="5"/>
+   </properties>
+  </tile>
+ </tileset>
+ <imagelayer name="Background"/>
+ <layer name="BackgroundDecor" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3TOQrAMBADQFc5Ifn/b3NUSQpDGsvFDKjYTiC2FAAAAIB/5kpob6mE9tZHps9N1pAuwIs9+nLtsZ3Z00W4+Y++jOkCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEDEASyJI+NAnAAA
+  </data>
+ </layer>
+ <layer name="Collisions" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3bzW4TMRSG4XMnfN3ADroBsQE2be7/khgLBqx2fhPb53j8PtLZRcrYrzxJ08QMAAD0TtM8eV8E/rlN893oEsUtG7r4uy1M6kITH0s98rOyNLSqZ63H1my1eju0O+eeHo+0o8+22j22+tDmvdY98nlusL7eePZ4tTHPyAdbf739bJyRVvIOa/vh3WOkMyLb3w/vHjXOyMdpPlm89+Hpeff24ueBx7Q4Iyo4X6f5tvOcHvdJ7VzT7e/jIpyR3s/kETpwXQk92pDtN0l+TPNl53FXG6/3ddq5rtloZyR6j5HOyMs0v+7azcdp59pyo5wRz79BtXJNSz1GOSO99Eiu3sTzXpVo4Zq2eiRXbuLZIpGd75Fc8bXEu0Uiu69HOiMRPkspMd73qJzsvh6zuUupaXUffMmeM0qLRPZYj9LmviW75HsfsUFOFqvHrOS5i7r3a2TxeoxMRo9IZPSIIv0PPeLrx6hk9IhERo8o5u/70MPfkRb0aONoC3rUd+Q7ifSo72wHepR3bwN6lPH2e+olPhvFcTX2nx7nlLgH0eMxrRvQ4z3PBvT4I0qDUXu0eD2mx7ql301673eUHlu/Ka013nsbtceZz9NGn9r2/j/JtOtBizg9aBGnB68XsXoowLp6ndI4G7F6KMCaep7SFGBNPU9JvKeK1UMB1tP7lKQA6+l9SlKA9fQ+JSnAenqfkhRgPT2MNqY0BVhvxH3Op6X5Ob33xmPfI5P571utve+VrL8usmvs/RpZ7C6ya+//FlmMPvk14D85DQAAAAAAAAAAAAAAAAAAqOs3sHDlsECcAAA=
+  </data>
+ </layer>
+ <layer name="Decor" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3ROQ7AIAxFQaosJE3uf9lQ0EBFZ0vMSE9uLf1SAAAAAMjoniJWnSLW07v6Jd7bOqKfYGCPXOyRy9n6FgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA9vUDgbbg3ECcAAA=
+  </data>
+ </layer>
+</map>

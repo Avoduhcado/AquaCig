@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="Spooky" tilewidth="32" tileheight="32">
+  <image source="G:/Users/Dominus/Downloads/Spooky/Spooky Tileset.png" width="496" height="160"/>
+  <terraintypes>
+   <terrain name="Slope 45" tile="18"/>
+  </terraintypes>
+  <tile id="3" terrain="0,,,"/>
+  <tile id="4" terrain="0,,,"/>
+  <tile id="5" terrain="0,0,0,0"/>
+  <tile id="6" terrain="0,0,0,0"/>
+  <tile id="7" terrain="0,0,0,0"/>
+  <tile id="8" terrain="0,0,0,0"/>
+  <tile id="9" terrain="0,0,0,0"/>
+  <tile id="10" terrain="0,0,0,0"/>
+  <tile id="11" terrain="0,0,0,0"/>
+  <tile id="12" terrain="0,0,0,0"/>
+  <tile id="13" terrain="0,0,0,0"/>
+  <tile id="14" terrain="0,0,0,0"/>
+  <tile id="15" terrain="0,0,0,0"/>
+  <tile id="16" terrain="0,0,0,0"/>
+  <tile id="17" terrain="0,0,0,0"/>
+  <tile id="18" terrain="0,,,"/>
+  <tile id="37" terrain="0,,,"/>
+  <tile id="38" terrain="0,,,"/>
+  <tile id="40" terrain=",0,,"/>
+  <tile id="41" terrain=",0,,"/>
+  <tile id="50" terrain="0,,,"/>
+  <tile id="57" terrain=",0,,"/>
+  <tile id="58" terrain="0,0,0,0"/>
+ </tileset>
+ <layer name="Background" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3UMREAIBADsJp4wL9SVHB0yBALmSRDjUWVTZVDld9fAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALxyAahlgk5AnAAA
+  </data>
+ </layer>
+ <layer name="Tile Layer 1" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3WwU6DMAAG4J6cmVGjT6BHPWzeUA96w/j+L2RJRtI0gMA6MPP7kj+hsCVsP23ZhhC2A2FZlzFXSfIxy9pk4+uYm5jbFe6FEB6z8cUqd0HrJRvrY11VzHvM3SGb5HhM7pe/5bP2FfMd8zAz+XrHcZo+6pj9IXWSrnN1di5f7zhO20f+P4+NPsraheEe9j3H+jiNpo8xXQx95inmOdjvS8j7GNtBOn6NeQv2+xJ+mx9z9hT7/Xxj16s5vehjuraPKkxbt9Lr+XfT6/qYZmh+lIg+punqo2/fGJpDzbWPjnwu91POQqn5YR6UMaaPqudYH+WZH39L2kf+7PftCfaJ0+l73/XMr8MzDwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/Dc/9vm8lUCcAAA=
+  </data>
+ </layer>
+</map>
