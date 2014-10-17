@@ -19,6 +19,7 @@ public class Actor extends Entity {
 	private float dx, dy;
 	private CharState state = CharState.IDLE;
 	public float jumpTimer = 0f;
+	public boolean dropping;
 	
 	public Actor(float x, float y, String[] ref) {
 		super(x, y, ref[0]);
@@ -55,7 +56,8 @@ public class Actor extends Entity {
 		if(velocity.x != 0)
 			model.setDirection(velocity.x < 0 ? 2 : 1);
 		
-		if(Math.abs(velocity.y) >= 6f) {
+		if(Math.abs(velocity.y) > 2f) {
+		//if(velocity.y != 0) {
 			if(velocity.y > 0)
 				setState(CharState.FALLING);
 			else
@@ -95,14 +97,15 @@ public class Actor extends Entity {
 					xSteps = maxX;
 				// Translate box with correct direction
 				tempBox = new Rectangle2D.Double(getBox().getX() + (xSteps * (velocity.x / Math.abs(velocity.x))),
-						getBox().getY(), getBox().getWidth(), getBox().getHeight());
+						getBox().getY() + tempY, getBox().getWidth(), getBox().getHeight());
 				// Check collisions with entities
 				for(core.tiled.Platform p : PropMap.getPlatformSectors(tempBox)) {
 					if(p.intersects(tempBox, velocity)) {
 						if(p.canStep(tempBox)) {
-							dy = (float) -(tempBox.getMaxY() - p.getBox().getY());
+							dy = (float) -(box.getMaxY() - p.getBox().getY());
 							velocity.y = 0;
 							maxY = 0;
+							tempY = dy;
 						} else {
 							dx = (velocity.x > 0 ? (float) (p.getBox().getX() - this.getBox().getMaxX()) :
 								(float) (p.getBox().getMaxX() - this.getBox().getX()));
@@ -141,13 +144,18 @@ public class Actor extends Entity {
 						getBox().getWidth(), getBox().getHeight());
 				for(core.tiled.Platform p : PropMap.getPlatformSectors(tempBox)) {
 					if(p.intersects(tempBox, velocity)) {
-						dy = (velocity.y > 0 ? (float) Math.floor(p.getBox().getY() - this.getBox().getMaxY()) :
-							(float) (p.getBox().getMaxY() - this.getBox().getY()));
-						if(velocity.y > 0 && dy == 0)
-							jumpTimer = 0f;
-						velocity.y = 0;
-						maxY = 0;
-						break;
+						if(p.isOneWay() && this.dropping) {
+							dropping = false;
+							break;
+						} else {
+							dy = (velocity.y > 0 ? (float) Math.floor(p.getBox().getY() - this.getBox().getMaxY()) :
+								(float) (p.getBox().getMaxY() - this.getBox().getY()));
+							if(velocity.y > 0 && dy == 0)
+								jumpTimer = 0f;
+							velocity.y = dy % 25;
+							maxY = 0;
+							break;
+						}
 					}
 				}
 				/*for(Rectangle2D p : PropMap.getMapSectors(tempBox)) {
@@ -207,9 +215,13 @@ public class Actor extends Entity {
 		}
 	}
 	
+	public void drop() {
+		this.dropping = true;
+	}
+	
 	public void fastFall() {
-		if(velocity.y + 2f <= 5f)
-			velocity.y += 2f;
+		if(velocity.y + 4f <= 5f)
+			velocity.y += 4f;
 		else
 			velocity.y = 5f;
 	}

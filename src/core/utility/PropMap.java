@@ -5,17 +5,17 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import core.entities.Entity;
-import core.entities.Platform;
+
+import core.tiled.Platform;
+import core.world.TileSet;
 
 public class PropMap {
 
-	private static final int tileSize = 16;
-	private static HashMap<Point, ArrayList<Platform>> propMap = new HashMap<Point, ArrayList<Platform>>();
+	private static final int tileSize = TileSet.tileWidth;
 	private static HashMap<Point, ArrayList<Rectangle2D>> rectMap = new HashMap<Point, ArrayList<Rectangle2D>>();
-	private static HashMap<Point, ArrayList<core.tiled.Platform>> platformMap = new HashMap<Point, ArrayList<core.tiled.Platform>>();
+	private static HashMap<Point, ArrayList<Platform>> platformMap = new HashMap<Point, ArrayList<Platform>>();
 	
-	public static void populateMap(ArrayList<Entity> props) {
+	/*public static void populateMap(ArrayList<Entity> props) {
 		for(int i = 0; i<props.size(); i++) {
 			Point p = new Point((int) (props.get(i).getX() / tileSize), (int) (props.get(i).getY() / tileSize));
 			if(propMap.containsKey(p)) {
@@ -59,22 +59,22 @@ public class PropMap {
 			}
 		}
 		
-		/*Iterator<Entry<Point, ArrayList<Platform>>> i = getMap().entrySet().iterator();
+		Iterator<Entry<Point, ArrayList<Platform>>> i = getMap().entrySet().iterator();
 		while(i.hasNext()) {
 			ArrayList<Platform> p = i.next().getValue();
 			for(int x = 0; x<p.size(); x++) {
 				System.out.println(p.get(x).getBox());
 			}
-		}*/
-	}
+		}
+	}*/
 	
-	public static void populatePlatforms(ArrayList<core.tiled.Platform> platforms) {
+	public static void populatePlatforms(ArrayList<Platform> platforms) {
 		for(int i = 0; i<platforms.size(); i++) {
 			Point p = new Point((int) (platforms.get(i).getBox().getX() / tileSize), (int) (platforms.get(i).getBox().getY() / tileSize));
 			if(platformMap.containsKey(p)) {
 				platformMap.get(p).add(platforms.get(i));
 			} else {
-				platformMap.put(p, new ArrayList<core.tiled.Platform>(Arrays.asList(platforms.get(i))));
+				platformMap.put(p, new ArrayList<Platform>(Arrays.asList(platforms.get(i))));
 			}
 			
 			Point p2 = new Point((int) (platforms.get(i).getBox().getMaxX() / tileSize), (int) (platforms.get(i).getBox().getMaxY() / tileSize));
@@ -84,13 +84,13 @@ public class PropMap {
 					if(platformMap.containsKey(new Point(j, p.y))) {
 						platformMap.get(new Point(j, p.y)).add(platforms.get(i));
 					} else {
-						platformMap.put(new Point(j, p.y), new ArrayList<core.tiled.Platform>(Arrays.asList(platforms.get(i))));
+						platformMap.put(new Point(j, p.y), new ArrayList<Platform>(Arrays.asList(platforms.get(i))));
 					}
 					// Bottom Row
 					if(platformMap.containsKey(new Point(j, p2.y))) {
 						platformMap.get(new Point(j, p2.y)).add(platforms.get(i));
 					} else {
-						platformMap.put(new Point(j, p2.y), new ArrayList<core.tiled.Platform>(Arrays.asList(platforms.get(i))));
+						platformMap.put(new Point(j, p2.y), new ArrayList<Platform>(Arrays.asList(platforms.get(i))));
 					}
 				}
 			}
@@ -100,13 +100,13 @@ public class PropMap {
 					if(platformMap.containsKey(new Point(p.x, j))) {
 						platformMap.get(new Point(p.x, j)).add(platforms.get(i));
 					} else {
-						platformMap.put(new Point(p.x, j), new ArrayList<core.tiled.Platform>(Arrays.asList(platforms.get(i))));
+						platformMap.put(new Point(p.x, j), new ArrayList<Platform>(Arrays.asList(platforms.get(i))));
 					}
 					// Right Side
 					if(platformMap.containsKey(new Point(p2.x, j))) {
 						platformMap.get(new Point(p2.x, j)).add(platforms.get(i));
 					} else {
-						platformMap.put(new Point(p2.x, j), new ArrayList<core.tiled.Platform>(Arrays.asList(platforms.get(i))));
+						platformMap.put(new Point(p2.x, j), new ArrayList<Platform>(Arrays.asList(platforms.get(i))));
 					}
 				}
 			}
@@ -162,20 +162,20 @@ public class PropMap {
 		return rectMap;
 	}
 	
-	public static HashMap<Point, ArrayList<core.tiled.Platform>> getPlatformMap() {
+	public static HashMap<Point, ArrayList<Platform>> getPlatformMap() {
 		return platformMap;
 	}
 	
-	public static ArrayList<core.tiled.Platform> getPlatformSector(Point p) {
+	public static ArrayList<Platform> getPlatformSector(Point p) {
 		if(platformMap.containsKey(p)) {
 			return platformMap.get(p);
 		} else {
-			return new ArrayList<core.tiled.Platform>();
+			return new ArrayList<Platform>();
 		}
 	}
 	
-	public static ArrayList<core.tiled.Platform> getPlatformSectors(Rectangle2D r) {
-		ArrayList<core.tiled.Platform> platforms = new ArrayList<core.tiled.Platform>();
+	public static ArrayList<Platform> getPlatformSectors(Rectangle2D r) {
+		ArrayList<Platform> platforms = new ArrayList<Platform>();
 		
 		Point p = new Point((int) (r.getX() / tileSize), (int) (r.getY() / tileSize));
 		if(platformMap.containsKey(p)) {

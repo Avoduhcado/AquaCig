@@ -21,7 +21,7 @@ public class Camera {
 	private final int HEIGHT = 600;
 	public static final int TARGET_FPS = 60;
 	
-	private Rectangle2D frame = new Rectangle2D.Double(0, 0, WIDTH, HEIGHT);
+	public Rectangle2D frame = new Rectangle2D.Double(0, 0, WIDTH, HEIGHT);
 	
 	public int projectionMatrixLocation = 0;
 	public int orthoMatrixLocation = 0;
@@ -102,8 +102,9 @@ public class Camera {
 		Display.sync(TARGET_FPS);
 		Display.update();
 		
-		cameraPos = new Vector3f((float) -focus.getBox().getCenterX() + ((WIDTH) / 2f), (float) -focus.getBox().getCenterY() + (HEIGHT / 2f), 0);
-		frame = new Rectangle2D.Double(cameraPos.x, cameraPos.y, WIDTH * scale, HEIGHT * scale);
+		cameraPos = new Vector3f((float) -focus.getBox().getCenterX() + ((WIDTH) / 2f),
+				(float) -focus.getBox().getCenterY() + (HEIGHT / 2f), 0);
+		frame = new Rectangle2D.Double(cameraPos.x, -cameraPos.y, WIDTH * scale, HEIGHT * scale);
 		
 		// Setup orthogonal matrix
 		float tx = (float) -((frame.getWidth() + ((-WIDTH / 1.5f) * (scale - 1f))) / (frame.getWidth() - ((-WIDTH / 1.5f) * (scale - 1f))));

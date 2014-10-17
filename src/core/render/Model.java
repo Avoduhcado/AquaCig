@@ -47,17 +47,12 @@ public class Model {
 		this.textureNames = textures;
 		
 		for(int x = 0; x<textures.length; x++) {
-			/*try {
-				this.textures[x] = TextureLoader.getTexture("PNG",
-						ResourceLoader.getResourceAsStream(System.getProperty("resources") + "/textures/" + this.textureNames[x]));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}*/
 			this.textures[x] = TextureList.loadTexture(this.textureNames[x]);
 		}
 		
 		if(textures[currentTexture].contains("_")) {
-			loadFrames(textures[currentTexture].substring(textures[currentTexture].indexOf("_") + 1, textures[currentTexture].indexOf(".")));
+			loadFrames(textures[currentTexture].substring(textures[currentTexture].indexOf("_") + 1,
+					textures[currentTexture].indexOf(".")));
 		}
 		
 		setupShaders();

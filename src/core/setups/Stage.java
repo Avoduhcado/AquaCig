@@ -1,23 +1,30 @@
 package core.setups;
 
+import java.util.HashMap;
+
 import core.Camera;
 import core.entities.Actor;
 import core.entities.Entity;
+import core.render.TileIndex;
+import core.tiled.Map;
+import core.tiled.Platform;
 import core.tiled.TileLayer;
-import core.world.Map;
 
 public class Stage {
 
 	public static float gravity = 1.75f;
 	
 	public Actor player;
-	public Map map;
-	public core.tiled.Map map2;
+	//public Map map;'
+	public HashMap<String, Map> maps = new HashMap<String, Map>();
+	//public Map map;
 	
 	//public static ArrayList<Entity> entities = new ArrayList<Entity>();
 	
 	public Stage() {
-		map2 = new core.tiled.Map("JASON.tmx");
+		// TODO backgrounds
+		maps.put("Crash Site 0,0", new Map("Crash Site 0,0.tmx"));
+		//map = new Map("Crash Site 0,0.tmx");
 		
 		player = new Actor(100, -100, new String[]{"Spess_4_2.png", "SpessWalk_4_2.png",
 				"SpessWalk_4_2.png", "SpessJump_1_2.png", "SpessFall_1_2.png"});
@@ -50,12 +57,31 @@ public class Stage {
 	}
 	
 	public void update() {
-		for(TileLayer layer : map2.getTileLayers()) {
-			for(Entity e : layer.getTiles()) {
-				e.update();
+		/*for(Map m : maps.values()) {
+			for(TileLayer layer : m.getBackgroundLayers()) {
+				for(Entity e : layer.getTiles()) {
+					e.update();
+				}
+			}
+		}*/
+		player.update();
+		/*for(Map m : maps.values()) {
+			for(TileLayer layer : m.getForegroundLayers()) {
+				for(Entity e : layer.getTiles()) {
+					e.update();
+				}
+			}
+		}*/
+		
+		for(Platform p : maps.get("Crash Site 0,0").getMapLayer().getPlatforms()) {
+			if(Camera.get().frame.intersects(p.getBox()) && maps.get(p.getMapName()) == null) {
+				maps.put(p.getMapName(), new Map(p.getMapName() + ".tmx", (float) p.getBox().getY()));
+				System.out.println("Added " + p.getMapName());
+			} else if(!Camera.get().frame.intersects(p.getBox()) && maps.get(p.getMapName()) != null) {
+				maps.remove(p.getMapName());
+				System.out.println("Removed " + p.getMapName());
 			}
 		}
-		player.update();
 		/*for(Entity e : map.getBackgroundLayer(0).getTiles())
 			e.update();
 		for(Entity e : map.getCollision().getTiles())
@@ -66,12 +92,23 @@ public class Stage {
 	}
 	
 	public void draw() {
-		for(TileLayer layer : map2.getTileLayers()) {
-			for(Entity e : layer.getTiles()) {
-				e.draw();
+		// TODO fix this, add layers
+		TileIndex.draw();
+		/*for(Map m : maps.values()) {
+			for(TileLayer layer : m.getBackgroundLayers()) {
+				for(Entity e : layer.getTiles()) {
+					e.draw();
+				}
 			}
-		}
+		}*/
 		player.draw();
+		/*for(Map m : maps.values()) {
+			for(TileLayer layer : m.getForegroundLayers()) {
+				for(Entity e : layer.getTiles()) {
+					e.draw();
+				}
+			}
+		}*/
 		/*for(Entity e : map.getBackgroundLayer(0).getTiles())
 			e.draw();
 		for(Entity e : map.getCollision().getTiles())
@@ -79,6 +116,12 @@ public class Stage {
 		player.draw();
 		for(Entity e : map.getForegroundLayer(0).getTiles())
 			e.draw();*/
+	}
+	
+	public String getCurrentMap() {
+		
+		
+		return "";
 	}
 	
 }

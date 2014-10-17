@@ -18,6 +18,8 @@ import core.Theater;
 
 public class Model2D extends Model {
 	
+	public static int setups = 0;
+	
 	public Model2D(String[] textures) {
 		super(textures);
 		
@@ -27,7 +29,7 @@ public class Model2D extends Model {
 		setupShaders();
 		setupVertices();*/
 	}
-	
+
 	@Override
 	public void update() {
 		if(maxDirection > 1 || maxFrame > 1) {
@@ -81,6 +83,8 @@ public class Model2D extends Model {
 	@Override
 	public void draw() {
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
+		// Wire frame mode
+		//GL11.glPolygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_LINE );
 		
 		GL20.glUseProgram(shader);
 		
@@ -117,6 +121,14 @@ public class Model2D extends Model {
 		GL20.glUseProgram(0);
 		
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
+	}
+	
+	public void drawAt(float x, float y) {
+		modelPos.x = x;
+		modelPos.y = y;
+		
+		update();
+		draw();
 	}
 	
 	public void animate(boolean loop) {
@@ -163,6 +175,7 @@ public class Model2D extends Model {
 	}
 	
 	public void setupVertices() {
+		System.out.println(setups++);
 		VertexData v0 = new VertexData(); {
 			v0.setXYZ(0f, 0f, 0);
 			v0.setRGB(1, 0, 0);

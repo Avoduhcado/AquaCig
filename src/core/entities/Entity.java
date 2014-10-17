@@ -4,6 +4,7 @@ import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
 import core.render.Model2D;
+import core.render.TextureList;
 
 public class Entity implements Serializable {
 
@@ -16,10 +17,14 @@ public class Entity implements Serializable {
 		
 	public Entity(float x, float y, String ref) {
 		this.model = new Model2D(new String[]{ref});
+		//this.model = TextureList.loadModel(ref);
 		this.model.translate(x, y, 0);
 		this.box = new Rectangle2D.Double(x, y, this.model.getWidth(), this.model.getHeight());
 	}
 	
+	public Entity() {
+	}
+
 	public void update() {		
 		model.update();
 	}

@@ -55,12 +55,16 @@ public class Input {
 			}
 			if(Mouse.hasWheel()) {
 				float wheel = -Theater.getDeltaSpeed(Mouse.getDWheel() / 1200f);
-				if(Camera.get().scale + wheel >= 0.75f && Camera.get().scale + wheel <= 3f)
-					Camera.get().scale += wheel;
-				else if(Camera.get().scale + wheel >= 3f)
+				if(Camera.get().scale + wheel >= 0.75f && Camera.get().scale + wheel <= 3f) {
+					if(Camera.get().scale > 1f && Camera.get().scale + wheel < 1f)
+						Camera.get().scale = 1f;
+					else
+						Camera.get().scale += wheel;
+				} else if(Camera.get().scale + wheel >= 3f) {
 					Camera.get().scale = 3f;
-				else
+				} else {
 					Camera.get().scale = 0.75f;
+				}
 				//System.out.println(Camera.get().offset);
 			}
 		//}
@@ -71,13 +75,14 @@ public class Input {
 		if(Keybinds.A.press()) {
 			stage.player.moveLeft();
 		}
-		if(Keybinds.JUMP.press()) {
+		if(Keybinds.JUMP.press() && !Keybinds.S.press()) {
 			stage.player.jump();
 		} else if(stage.player.isAirborne()) {
 			stage.player.jumpTimer = 0.4f;
 		}
-		if(Keybinds.S.press()) {
-			stage.player.fastFall();
+		if(Keybinds.S.press() && Keybinds.JUMP.clicked()) {
+			stage.player.drop();
+			//stage.player.fastFall();
 		}
 		
 		if(Keybinds.UP.press()) {
